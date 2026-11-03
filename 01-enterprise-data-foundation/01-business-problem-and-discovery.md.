@@ -1,50 +1,74 @@
-01 — Business Problem and Discovery
-Educational portfolio piece. Brightwell Home & Appliance is a fictional company and all figures are invented. This is not an official implementation of any vendor's product. Label: Demonstrated using synthetic data (fictional client scenario). Status: v1 complete. One ✏️ remains (budget and timeline question).
+# 01 — Business Problem and Discovery
 
-1. Client context
+> Educational portfolio piece. Brightwell Home & Appliance is a fictional company and all figures are invented. This is not an official implementation of any vendor's product.
+
+**Label:** Demonstrated using synthetic data (fictional client scenario).
+
+## 1. Client context
+
 Brightwell Home & Appliance is a fictional UK retailer of home appliances with 38 stores, a website, and delivery, installation, warranty and repair services. It has about 1,200 employees and about 420,000 customers. Its systems were added over time (stores, online sales, an acquired repair company, a warranty plan), so customer data now sits in seven unconnected applications.
 
-2. Business problem statement
+## 2. Business problem statement
+
 Brightwell's customer, sales, warranty and service data is held in seven systems that do not share a common customer identity or agreed business definitions. As a result, leadership receives different answers to basic questions such as "how many active customers do we have?" and "what was last month's revenue?". Finance spends about four days each month reconciling reports, marketing sends warranty offers to customers who already hold a warranty, and support agents open several systems to answer one call (average nine minutes). The board wants an AI assistant, but the CIO is not confident the underlying data is reliable enough to support it. Brightwell needs one trusted, governed view of customers, transactions and service activity, with agreed metric definitions, so that reporting is consistent, staff stop duplicating work, and AI initiatives can be built on data that is ready for them.
 
-Impact figures above come from the fictional leadership interviews. ✏️ In discovery we would try to quantify each one in money (for example, four finance days per month, repeat marketing sends, minutes per call).
+*Impact figures above come from the fictional leadership interviews. In discovery we would try to quantify each one in money (for example, four finance days per month, repeat marketing sends, minutes per call).*
 
-3. Symptoms and hypothesised root causes
-Stakeholder	Symptom	Hypothesised root cause	How we would test it
-CEO	Three different "active customer" numbers	No shared customer ID across systems, and no single agreed definition of "active"	Ask each team for their definition and query; compare counts on the same date
-CFO	Sales dashboard revenue differs from ERP	Either missing data in one system, or different definitions (gross vs net, order date vs payment date, refunds) or load timing	Reconcile one month line by line and categorise each difference
-Marketing Director	Warranty offers sent to existing warranty holders	Warranty data lives in shared spreadsheets that are not connected to the CRM	Check how the warranty list reaches the CRM, if at all, and how often
-4. Stakeholder map
-Stakeholder	Role in the decision	Cares about	Priority for first workshop
-CIO	Champion and technical owner	Whether data is ready for AI; platform and skills	Core
-Head of Customer Support	Daily user	Call time, customer satisfaction, finding customer history quickly	Core
-Marketing Director	Daily user	Campaign ROI, not mailing existing warranty holders	Core
-CFO	Budget holder and owner of the revenue figure	ROI, trusted revenue, month-end effort	Short 30-minute session (✏️ rationale to confirm)
-CEO	Executive sponsor	Growth, one version of the truth	Brief before and after, not in the workshop
-Head of Service	Affected user	Warranty status before an engineer visit	Keep informed; interview later
-Data owners (warranty spreadsheet owner, ERP admin, CRM admin)	Hold the real knowledge	How data is entered and moved	Individual interviews
-Privacy / legal / security	Approver	Personal data handling	Consulted before design
-5. Discovery questions
-✏️ Vector's questions will be merged here after review. Draft starter set based on Vector's thinking:
+## 3. Symptoms and hypothesised root causes
 
-Business goals and impact
+- **CEO.** Symptom: three different "active customer" numbers. Likely cause: no shared customer ID across systems, and no single agreed definition of "active". Test: ask each team for their definition and query, and compare counts on the same date.
+- **CFO.** Symptom: sales dashboard revenue differs from the ERP. Likely cause: either missing data in one system, or different definitions (gross vs net, order date vs payment date, refunds) or load timing. Test: reconcile one month line by line and categorise each difference.
+- **Marketing Director.** Symptom: warranty offers sent to existing warranty holders. Likely cause: warranty data lives in shared spreadsheets that are not connected to the CRM. Test: check how the warranty list reaches the CRM, if at all, and how often.
 
-How does the CEO want an "active customer" to be defined, and what decision depends on that number?
-What does the board expect the AI assistant to do, and by when?
-What is one error in the current reports that has cost the business money or a decision?
-Current processes and pain points 4. Walk me through what happens when Finance reconciles revenue each month. 5. What are the most common reasons customers contact support, and what information do agents need to resolve them? 6. How does the marketing team decide who receives a warranty promotion?
+## 4. Stakeholder map
 
-Data and systems 7. When is a customer considered active: last purchase, last invoice, last service visit, or something else? 8. Which system does each team treat as the source of truth, and why?
+- **CIO.** Champion and technical owner. Cares about whether data is ready for AI, and about platform and skills. First workshop: core.
+- **Head of Customer Support.** Daily user. Cares about call time, customer satisfaction and finding customer history quickly. First workshop: core.
+- **Marketing Director.** Daily user. Cares about campaign ROI and not mailing existing warranty holders. First workshop: core.
+- **CFO.** Budget holder and owner of the revenue figure. Cares about ROI, trusted revenue and month-end effort. Short 30-minute session.
+- **CEO.** Executive sponsor. Cares about growth and one version of the truth. Brief before and after, not in the workshop.
+- **Head of Service.** Affected user. Cares about warranty status before an engineer visit. Keep informed, interview later.
+- **Data owners (warranty spreadsheet owner, ERP admin, CRM admin).** Hold the real knowledge of how data is entered and moved. Individual interviews.
+- **Privacy, legal and security.** Approvers of personal data handling. Consulted before design.
 
-Technical environment and constraints 9. Which ERP do you run and which version, and what kind of data does it hold? (Vector) 10. When a sale happens, online or in store, which system receives it first and how does it reach the others? (Vector) 11. Do you also sell through other stores or business partners, and where is that data kept? (Vector) 12. Which system does marketing use for advertising, and what data does it use for warranty promotions? (Vector) 13. When an agent is on a call, what data do they need and where do they fetch it from? (Vector) 14. ✏️ Budget and timeline: what budget range and deadline are you working to?
+## 5. Discovery questions
 
-CFO session (30 minutes) 15. Roughly how much revenue do you lose through slow customer response times? (Vector) 16. What do unwanted warranty promotions to existing warranty holders cost you? (Vector)
+### Business goals and impact
+1. How does the CEO want an "active customer" to be defined, and what decision depends on that number?
+2. What does the board expect the AI assistant to do, and by when?
+3. What is one error in the current reports that has cost the business money or a decision?
 
-Governance, security and privacy 18. Who currently has access to sensitive and financial customer data, and how is that access approved and reviewed? (Vector, refined) 19. Walk me through how a new employee is given access to customer data, and how it is removed when they leave. 20. Who is responsible for the accuracy of customer data in each system?
+### Current processes and pain points
+4. Walk me through what happens when Finance reconciles revenue each month.
+5. What are the most common reasons customers contact support, and what information do agents need to resolve them?
+6. How does the marketing team decide who receives a warranty promotion?
 
-Success measures 17. What does the company want to achieve in the next quarter? (Vector)
+### Data and systems
+7. When is a customer considered active: last purchase, last invoice, last service visit, or something else?
+8. Which system does each team treat as the source of truth, and why?
+9. Which ERP do you run and which version, and what kind of data does it hold? (Vector)
+10. When a sale happens, online or in store, which system receives it first and how does it reach the others? (Vector)
+11. Do you also sell through other stores or business partners, and where is that data kept? (Vector)
+12. Which system does marketing use for advertising, and what data does it use for warranty promotions? (Vector)
+13. When an agent is on a call, what data do they need and where do they fetch it from? (Vector)
 
-6. Next steps
-Hold the first workshop with the CIO, Head of Customer Support and Marketing Director, plus a short CFO session.
-Collect each team's definition of "active customer" and revenue before proposing any design.
-Move to requirement
+### Technical environment and constraints
+14. What budget range and deadline are you working to? (to be added by Vector in refined form)
+
+### Finance (30-minute CFO session)
+15. Roughly how much revenue do you lose through slow customer response times? (Vector)
+16. What do unwanted warranty promotions to existing warranty holders cost you? (Vector)
+
+### Success measures
+17. What does the company want to achieve in the next quarter? (Vector)
+
+### Governance, security and privacy
+18. Who currently has access to sensitive and financial customer data, and how is that access approved and reviewed? (Vector, refined)
+19. Walk me through how a new employee is given access to customer data, and how it is removed when they leave.
+20. Who is responsible for the accuracy of customer data in each system?
+
+## 6. Next steps
+
+- Hold the first workshop with the CIO, Head of Customer Support and Marketing Director, plus a short CFO session.
+- Collect each team's definition of "active customer" and revenue before proposing any design.
+- Move to requirements (milestone 1.2).
