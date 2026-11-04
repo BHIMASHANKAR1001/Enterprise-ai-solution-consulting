@@ -13,7 +13,7 @@ Streaming is not recommended at this stage because no requirement needs sub-minu
 ## 2. Ingestion by source
 
 - **Warranty spreadsheets:** file pickup, hourly batch. Reason: NFR3 requires new warranties to reach Marketing within 24 hours, and hourly keeps a wide safety margin. Longer-term option: replace the spreadsheet with a proper application.
-- **E-commerce platform:** to be completed (pull method and frequency, with a reason).
+- ****E-commerce platform**: API (JSON), hourly batch. No current requirement needs real-time; streaming can be reconsidered if live stock availability or fraud checks are added later..
 - **CRM:** nightly file or database read (to confirm).
 - **POS and ERP:** database read, nightly (to confirm); revenue reconciliation (FR5) is monthly.
 - **Field service app and support tool:** export or API, frequency to confirm.
